@@ -20,6 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+    $this->load->database();
+    $this->load->model('TodoItem_model');
+    $data['items'] = $this->TodoItem_model->get_all();
+		$this->load->view('todoitems_list', $data);
 	}
 }
