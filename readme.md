@@ -12,8 +12,5 @@
 ## Testing
 
 ```
-$ mysql -u root -e "CREATE DATABASE sacids_app1_test;"
-$ CI_ENV=testing php index.php migration latest
-$ cd application/tests/
-$ ../../bin/phpunit
+$ ./bin/test.sh
 ```
