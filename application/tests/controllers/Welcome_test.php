@@ -10,11 +10,27 @@
 
 class Welcome_test extends TestCase
 {
+  public function setUp() {
+    $this->resetInstance();
+    $this->CI->load->database();
+    $this->CI->db->query('DELETE FROM todo_items');
+    $this->CI->load->model('TodoItem_model');
+  }
+
 	public function test_index()
 	{
 		$output = $this->request('GET', ['Welcome', 'index']);
-		$this->assertContains('<h1>Todo Items</h1>', $output);
+    $this->assertContains('<h1>Todo Items</h1>', $output);
+    $this->assertRegExp('/<ul>\s*<\/ul>/', $output);
 	}
+
+  public function test_index_shows_saved_items()
+  {
+    $this->CI->TodoItem_model->create('Something to do');
+
+    $output = $this->request('GET', ['Welcome', 'index']);
+    $this->assertContains('<li>Something to do</li>', $output);
+  }
 
 	public function test_method_404()
 	{
