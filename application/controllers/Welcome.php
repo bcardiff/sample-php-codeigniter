@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 	{
     $this->load->database();
     $this->load->model('TodoItem_model');
-    $data['items'] = $this->TodoItem_model->get_all();
+    $data['todo_items'] = $this->TodoItem_model->get_all();
 		$this->load->view('todoitems_list', $data);
 	}
 }
