@@ -11,4 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <li><?php echo $item['description']; ?></li>
   <?php endforeach; ?>
   </ul>
+  <?php echo form_open('/create'); ?>
+    <input type="text" name="description" />
+    <input type="submit" value="Add" />
+  </form>
 </body>

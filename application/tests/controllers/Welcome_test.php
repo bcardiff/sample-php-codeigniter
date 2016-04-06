@@ -32,6 +32,18 @@ class Welcome_test extends TestCase
     $this->assertContains('<li>Something to do</li>', $output);
   }
 
+  public function test_post_create()
+  {
+    $output = $this->request('POST', ['Welcome', 'create'],
+      ['description' => 'Buy milk']);
+
+    $items = $this->CI->TodoItem_model->get_all();
+    $this->assertEquals(1, count($items));
+    $this->assertEquals('Buy milk', $items[0]['description']);
+
+    $this->assertRedirect('/', 302);
+  }
+
 	public function test_method_404()
 	{
 		$this->request('GET', ['Welcome', 'method_not_exist']);

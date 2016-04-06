@@ -23,6 +23,18 @@ class Welcome extends CI_Controller {
     $this->load->database();
     $this->load->model('TodoItem_model');
     $data['items'] = $this->TodoItem_model->get_all();
+
+    $this->load->helper('form');
+
 		$this->load->view('todoitems_list', $data);
 	}
+
+  public function create() {
+    $this->load->helper('url');
+    $this->load->database();
+    $this->load->model('TodoItem_model');
+    $description = $this->input->post('description');
+    $this->TodoItem_model->create($description);
+    redirect('/', 'location', 302);
+  }
 }
