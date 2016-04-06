@@ -16,4 +16,12 @@ class TodoItem_model_test extends TestCase
     $this->CI->TodoItem_model->done($id);
     $this->assertEquals(0, count($this->CI->TodoItem_model->get_pending()));
   }
+
+  public function test_done_items_are_not_deleted()
+  {
+    $this->assertEquals(0, count($this->CI->TodoItem_model->get_all()));
+    $id = $this->CI->TodoItem_model->create('Something to do');
+    $this->CI->TodoItem_model->done($id);
+    $this->assertEquals(1, count($this->CI->TodoItem_model->get_all()));
+  }
 }
