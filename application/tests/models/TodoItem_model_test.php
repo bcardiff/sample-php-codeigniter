@@ -2,13 +2,6 @@
 
 class TodoItem_model_test extends TestCase
 {
-  public function setUp() {
-    $this->resetInstance();
-    $this->CI->load->database();
-    $this->CI->db->query('DELETE FROM todo_items');
-    $this->CI->load->model('TodoItem_model');
-  }
-
   public function test_new_items_are_pending()
   {
     $this->assertEquals(0, count($this->CI->TodoItem_model->get_pending()));

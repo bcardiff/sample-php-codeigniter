@@ -10,13 +10,6 @@
 
 class Welcome_test extends TestCase
 {
-  public function setUp() {
-    $this->resetInstance();
-    $this->CI->load->database();
-    $this->CI->db->query('DELETE FROM todo_items');
-    $this->CI->load->model('TodoItem_model');
-  }
-
 	public function test_index()
 	{
 		$output = $this->request('GET', ['Welcome', 'index']);
