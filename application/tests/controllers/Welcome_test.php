@@ -37,7 +37,7 @@ class Welcome_test extends TestCase
     $output = $this->request('POST', ['Welcome', 'create'],
       ['description' => 'Buy milk']);
 
-    $items = $this->CI->TodoItem_model->get_all();
+    $items = $this->CI->TodoItem_model->get_pending();
     $this->assertEquals(1, count($items));
     $this->assertEquals('Buy milk', $items[0]['description']);
 
@@ -53,7 +53,7 @@ class Welcome_test extends TestCase
     $output = $this->request('GET', ['Welcome', 'done'],
       ['id' => $id2]);
 
-    $ids = $this->get_ids($this->CI->TodoItem_model->get_all());
+    $ids = $this->get_ids($this->CI->TodoItem_model->get_pending());
     $this->assertEquals([$id1, $id3], $ids);
     $this->assertRedirect('/', 302);
   }

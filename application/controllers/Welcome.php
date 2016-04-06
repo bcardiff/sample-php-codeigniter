@@ -28,7 +28,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-    $data['items'] = $this->TodoItem_model->get_all();
+    $data['items'] = $this->TodoItem_model->get_pending();
 
     $this->load->helper('form');
 

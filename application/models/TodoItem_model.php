@@ -5,7 +5,7 @@ class TodoItem_model extends CI_Model {
     $this->load->database();
   }
 
-  public function get_all()
+  public function get_pending()
   {
     $query = $this->db->get('todo_items');
     return $query->result_array();
