@@ -29,7 +29,7 @@ class Welcome_test extends TestCase
     $this->CI->TodoItem_model->create('Something to do');
 
     $output = $this->request('GET', ['Welcome', 'index']);
-    $this->assertContains('<li>Something to do</li>', $output);
+    $this->assertContains('Something to do', $output);
   }
 
   public function test_post_create()
@@ -41,6 +41,20 @@ class Welcome_test extends TestCase
     $this->assertEquals(1, count($items));
     $this->assertEquals('Buy milk', $items[0]['description']);
 
+    $this->assertRedirect('/', 302);
+  }
+
+  public function test_get_done()
+  {
+    $id1 = $this->CI->TodoItem_model->create('Buy milk');
+    $id2 = $this->CI->TodoItem_model->create('Buy eggs');
+    $id3 = $this->CI->TodoItem_model->create('Buy bread');
+
+    $output = $this->request('GET', ['Welcome', 'done'],
+      ['id' => $id2]);
+
+    $ids = $this->get_ids($this->CI->TodoItem_model->get_all());
+    $this->assertEquals([$id1, $id3], $ids);
     $this->assertRedirect('/', 302);
   }
 
@@ -60,4 +74,12 @@ class Welcome_test extends TestCase
 			'Your APPPATH seems to be wrong. Check your $application_folder in tests/Bootstrap.php'
 		);
 	}
+
+  function get_ids($data) {
+    return array_map(array($this, 'return_id'), $data);
+  }
+
+  function return_id($item) {
+    return $item['id'];
+  }
 }

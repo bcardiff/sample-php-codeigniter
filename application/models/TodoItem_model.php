@@ -17,6 +17,12 @@ class TodoItem_model extends CI_Model {
       'description' => $description,
     );
 
-    return $this->db->insert('todo_items', $data);
+    $this->db->insert('todo_items', $data);
+
+    return $this->db->insert_id();
+  }
+
+  public function done($id) {
+    $this->db->delete('todo_items', array('id' => $id));
   }
 }

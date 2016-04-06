@@ -40,4 +40,9 @@ class Welcome extends CI_Controller {
     $this->TodoItem_model->create($description);
     redirect('/', 'location', 302);
   }
+
+  public function done() {
+    $this->TodoItem_model->done($this->input->get('id'));
+    redirect('/', 'location', 302);
+  }
 }

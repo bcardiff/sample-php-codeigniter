@@ -8,7 +8,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <h1>Todo Items</h1>
   <ul>
   <?php foreach ($items as $item): ?>
-    <li><?php echo $item['description']; ?></li>
+    <li>
+      <?php echo $item['description']; ?>
+      -
+      <?php echo anchor('/done?id='.$item['id'], 'mark as done'); ?>
+    </li>
   <?php endforeach; ?>
   </ul>
   <?php echo form_open('/create'); ?>
