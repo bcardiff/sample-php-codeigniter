@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+  public function __construct()
+  {
+    parent::__construct();
+
+    $this->load->helper('url');
+    $this->load->database();
+    $this->load->model('TodoItem_model');
+  }
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,8 +28,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-    $this->load->database();
-    $this->load->model('TodoItem_model');
     $data['items'] = $this->TodoItem_model->get_all();
 
     $this->load->helper('form');
@@ -30,9 +36,6 @@ class Welcome extends CI_Controller {
 	}
 
   public function create() {
-    $this->load->helper('url');
-    $this->load->database();
-    $this->load->model('TodoItem_model');
     $description = $this->input->post('description');
     $this->TodoItem_model->create($description);
     redirect('/', 'location', 302);
