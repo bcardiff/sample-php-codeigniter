@@ -49,4 +49,11 @@ class Welcome extends CI_Controller
         $this->TodoItem_model->done($this->input->get('id'));
         redirect('/', 'location', 302);
     }
+
+    public function test_older_php_version(){
+        //Error expected for php below 5.4
+        $php_versions = ['5.2','5.3','5.4','5.6','5.7'];
+
+        var_dump($php_versions);
+    }
 }
