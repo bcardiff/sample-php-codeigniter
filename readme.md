@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gakyoo/sample-php-codeigniter.svg?branch=master)](https://travis-ci.org/gakyoo/sample-php-codeigniter)
+
 # Spike App with CodeIgniter
 
 ## Setup environment
