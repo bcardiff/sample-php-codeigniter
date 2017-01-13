@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/gakyoo/sample-php-codeigniter/badge.svg?branch=master)](https://coveralls.io/github/gakyoo/sample-php-codeigniter?branch=master) [![Build Status](https://travis-ci.org/gakyoo/sample-php-codeigniter.svg?branch=master)](https://travis-ci.org/gakyoo/sample-php-codeigniter)
+
 # Spike App with CodeIgniter
 
 ## Setup environment
